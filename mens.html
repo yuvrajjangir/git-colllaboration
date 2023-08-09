@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Men's Page</title>
+  <style>
+    #container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin: auto;
+        gap: 20px;
+        width: 100%;
+      }
+
+      #container > .card > img {
+        width: 60%;
+        height: 300px;
+      }
+      #nav{
+        display: flex;
+        margin: auto;
+        justify-content: space-evenly;
+        color: red;
+        cursor: pointer;
+      }
+      #nav>h3:first-child:hover{
+          color: blue;
+      }
+
+      #nav>h3:nth-child(2):hover{
+          color: blue;
+      }
+      #nav>h3:last-child:hover{
+          color: blue;
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav id="nav">
+    <h3>Men</h3>
+    <h3>Women</h3>
+    <h3>Cart</h3>
+  </nav>
+
+  <h1>Men's Page</h1>
+  <div id="container"></div>
+
+
+  <script>
+    var mensData = [{
+        image_url: "https://images-static.nykaa.com/media/catalog/product/e/d/edb124dex4296_3.jpg",
+        name: "MEN'S REEBOK RUNNING ROADMAP SHOES",
+        amount: "1170",
+      },
+      {
+        image_url: "https://images.jdmagicbox.com/quickquotes/images_main/reebok-mens-footwear-01-07-2021-802-237552523-2w6am.jpg",
+        name: "MEN'S REEBOK SWIM ARUBA FLIP SLIPPERS",
+        amount: 699,
+      },
+      {
+        image_url: "https://images.jdmagicbox.com/quickquotes/images_main/reebok-mens-footwear-01-07-2021-802-237552523-2w6am.jpg",
+        name: "Unisex Reebok Classics Leather Running Shoes",
+        amount: "1170",
+      },
+      {
+        image_url: "https://images.jdmagicbox.com/quickquotes/images_main/reebok-mens-footwear-01-07-2021-802-237552523-2w6am.jpg",
+        name: "MEN'S REEBOK SWIM ARUBA FLIP SLIPPERS",
+        amount: 699,
+      },
+      {
+        image_url: "https://images-static.nykaa.com/media/catalog/product/e/d/edb124dex4296_3.jpg",
+        name: "MEN'S REEBOK RUNNING ROADMAP SHOES",
+        amount: "1170",
+      },
+      {
+        image_url: "https://images.jdmagicbox.com/quickquotes/images_main/reebok-mens-footwear-01-07-2021-802-237552523-2w6am.jpg",
+        name: "MEN'S REEBOK SWIM ARUBA FLIP SLIPPERS",
+        amount: 699,
+      },
+      {
+        image_url: "https://images-static.nykaa.com/media/catalog/product/e/d/edb124dex4296_3.jpg",
+        name: "MEN'S REEBOK RUNNING ROADMAP SHOES",
+        amount: "1170",
+      },
+      {
+        image_url: "https://images.jdmagicbox.com/quickquotes/images_main/reebok-mens-footwear-01-07-2021-802-237552523-2w6am.jpg",
+        name: "MEN'S REEBOK SWIM ARUBA FLIP SLIPPERS",
+        amount: 699,
+      },
+    ];
+    var arr = JSON.parse(localStorage.getItem("cart"))||[];
+
+    var men = document.querySelector("#container");
+
+    mensData.forEach(function (elem) {
+      var card = document.createElement("div");
+      card.className = "card";
+
+      var name = document.createElement("p");
+      name.textContent = elem.name;
+
+      var image = document.createElement("img");
+      image.setAttribute("src", elem.image_url);
+
+      var price = document.createElement("p");
+      price.textContent = "Price: $" + elem.amount;
+
+      var button = document.createElement("button");
+      button.textContent = "Add to Cart";
+
+      card.append(image, name, price, button);
+
+      men.append(card);
+
+      button.addEventListener("click", function () {
+        add(elem);
+
+        alert("Item is add to cart")
+      });
+    });
+    
+
+    function add(product){
+      arr.push(product);
+      localStorage.setItem("cart",JSON.stringify(arr));
+    }
+
+
+    document.querySelector(" #nav>h3:nth-child(3)").addEventListener("click",function(){
+      window.location.replace("./cart.html")
+    })
+
+    document.querySelector(" #nav>h3:nth-child(2)").addEventListener("click",function(){
+      window.location.replace("./womens.html")
+   })
+  </script>
+</body>
+
+</html>
